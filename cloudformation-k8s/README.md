@@ -10,14 +10,14 @@ AWS cloud infrastructure, something like this:
 ## Installation
 1. Set up the VPC and the subnets in a stack.
 ```bash 
-aws cloudformation create-stack --stack-name eks-vpc --region eu-central-1 --template-body file://network.yml --parameters file://network-params.json
+aws cloudformation create-stack --stack-name eks-vpc --region us-east-1 --template-body file://network.yml --parameters file://network-params.json
 ```
 Pick stack names and a region of your liking.
 
 2. Wait until for the stack to complet and set up the 
 Kubernetes cluster
 ```
-aws cloudformation create-stack --stack-name eks --region eu-central-1 --template-body file://cluster.yml --parameters file://cluster-params.json --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation create-stack --stack-name eks --region us-east-1 --template-body file://cluster.yml --parameters file://cluster-params.json --capabilities CAPABILITY_NAMED_IAM
 ```
 This second stack will take approx 15 minutes to create.  
 ## Usage
@@ -29,7 +29,7 @@ This deployment will create additonal resources in AWS.
 
 ### Update the resources
 ```bash
-aws cloudformation update-stack --stack-name eks --region eu-central-1 --template-body file://cluster.yml --parameters file://cluster-params.json --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation update-stack --stack-name eks --region us-east-1 --template-body file://cluster.yml --parameters file://cluster-params.json --capabilities CAPABILITY_NAMED_IAM
 ```
 ### Update `kubectl` context
 Set up the `kubectl` to control your newly created environment. 
@@ -48,11 +48,11 @@ Issue `kubectl get svc` command to reveal your public url and test it in a borws
 ## Clean-up
 Tear down your resources like this
 ```bash
-aws delete-stack --stack-name eks --region eu-central-1
+aws delete-stack --stack-name eks --region us-east-1
 ```
 Wait for ColudFormation to delete your stack, otherwise the next command will eventually fail when trying to delete dependencies.
 ```bash
-aws delete-stack --stack-name eks-vpc --region eu-central-1
+aws delete-stack --stack-name eks-vpc --region us-east-1
 ```
 ---
 **NOTE**  
