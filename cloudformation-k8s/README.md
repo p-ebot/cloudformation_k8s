@@ -1,7 +1,7 @@
 ## What is this?
-Infrastructure as code (IaC) that builds a Kubernetes Cluster on a high availability
+Cloudformation that builds a Kubernetes Cluster on a high availability
 AWS cloud infrastructure, something like this:
-![network](./img/network.png)
+
 
 ## Requirements
 - aws account
