@@ -1,6 +1,6 @@
 ## What is this?
-Cloudformation that builds a Kubernetes Cluster on a high availability
-AWS cloud infrastructure, something like this:
+Cloudformation IAC that builds a Kubernetes Cluster on a high availability
+AWS cloud infrastructure.
 
 
 ## Requirements
