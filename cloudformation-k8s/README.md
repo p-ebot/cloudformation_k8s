@@ -5,7 +5,7 @@ AWS cloud infrastructure, something like this:
 
 ## Requirements
 - aws account
-- aws-cli/1.16.314 (the one I used)
+
 
 ## Installation
 1. Set up the VPC and the subnets in a stack.
@@ -31,28 +31,15 @@ This deployment will create additonal resources in AWS.
 ```bash
 aws cloudformation update-stack --stack-name eks --region us-east-1 --template-body file://cluster.yml --parameters file://cluster-params.json --capabilities CAPABILITY_NAMED_IAM
 ```
-### Update `kubectl` context
-Set up the `kubectl` to control your newly created environment. 
-```bash
-aws eks --region eu-central-1 update-kubeconfig --name prod
-```
-`prod` is the name of your ControlPlane.  
-### Deploy the reference application
-```bash
-kubectl apply -f deploy.yml
-```
-It will take a few minutes before the url comes alive.
-Issue `kubectl get svc` command to reveal your public url and test it in a borwser. You should see the _nginx_ welcome page
-
 
 ## Clean-up
 Tear down your resources like this
 ```bash
-aws delete-stack --stack-name eks --region us-east-1
+aws cloudformation delete-stack --stack-name eks --region us-east-1
 ```
-Wait for ColudFormation to delete your stack, otherwise the next command will eventually fail when trying to delete dependencies.
+Wait for CloudFormation to delete your stack, otherwise the next command will eventually fail when trying to delete dependencies.
 ```bash
-aws delete-stack --stack-name eks-vpc --region us-east-1
+aws cloudformation delete-stack --stack-name eks-vpc --region us-east-1
 ```
 ---
 **NOTE**  
